@@ -13,8 +13,9 @@ public class EditableBufferedReader extends BufferedReader {
         Runtime.getRuntime().exec(cmd).waitFor();
     }
 
-    public void unsetRaw() {
-
+    public void unsetRaw() throws InterruptedException, IOException {
+        String[] cmd = {"/bin/sh", "-c", "stty cooked </dev/tty"};
+        Runtime.getRuntime().exec(cmd).waitFor();
     }
 
     @Override

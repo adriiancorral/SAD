@@ -7,7 +7,7 @@ class TestReadLine {
     String str = null;
     try {
       //str = in.readLine();
-      ((EditableBufferedReader) in).setRaw();
+      ((EditableBufferedReader) in).unsetRaw();
     //} catch (IOException e) { e.printStackTrace(); }
     } catch (Exception e) { e.printStackTrace(); }
     //System.out.println("\nline is: " + str);
