@@ -1,20 +1,21 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
 
 public class EditableBufferedReader extends BufferedReader {
 
     public EditableBufferedReader(Reader in) {
         super(in);
     }
-    
+
     public void setRaw() {
-        
+
     }
 
     public void unsetRaw() {
 
     }
 
-    @Override
     public int read() {
         return 0;
     }
