@@ -6,8 +6,11 @@ class TestReadLine {
       new InputStreamReader(System.in));
     String str = null;
     try {
-      str = in.readLine();
-    } catch (IOException e) { e.printStackTrace(); }
-    System.out.println("\nline is: " + str);
+      //str = in.readLine();
+      ((EditableBufferedReader) in).setRaw();
+    //} catch (IOException e) { e.printStackTrace(); }
+    } catch (Exception e) { e.printStackTrace(); }
+    //System.out.println("\nline is: " + str);
+    System.out.println("\n This is a test");
   }
 }

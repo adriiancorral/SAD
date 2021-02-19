@@ -8,16 +8,18 @@ public class EditableBufferedReader extends BufferedReader {
         super(in);
     }
 
-    public void setRaw() {
-
+    public void setRaw() throws InterruptedException, IOException {
+        String[] cmd = {"/bin/sh", "-c", "stty raw </dev/tty"};
+        Runtime.getRuntime().exec(cmd).waitFor();
     }
 
     public void unsetRaw() {
 
     }
 
-    public int read() {
-        return 0;
+    @Override
+    public int read() throws IOException {
+        return super.read();
     }
 
     @Override
