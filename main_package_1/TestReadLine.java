@@ -1,4 +1,4 @@
-package main_package;
+package main_package_1;
 import java.io.*;
 
 class TestReadLine {

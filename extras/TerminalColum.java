@@ -1,7 +1,10 @@
+package extras;
+
 import java.io.*;
 
-class terminal_colum {
-    public static void main(String[] args) {
+class TerminalColum {
+
+    public static int getCols() {
         String cols = "";
         try {
             Process colsProcess = new ProcessBuilder("bash", "-c", "tput cols 2> /dev/tty").start();
@@ -11,6 +14,9 @@ class terminal_colum {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("El numero de columnas de esta terminal es: " + cols);
+        return Integer.parseInt(cols);
+    }
+    public static void main(String[] args) {
+        System.out.println(getCols());
     }
 }
