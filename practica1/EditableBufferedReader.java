@@ -1,4 +1,4 @@
-package main_package_1;
+package practica1;
 
 import java.io.BufferedReader;
 import java.io.IOException;

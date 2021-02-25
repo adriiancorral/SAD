@@ -1,4 +1,4 @@
-package main_package_1;
+package practica1;
 
 public class Line {
     
