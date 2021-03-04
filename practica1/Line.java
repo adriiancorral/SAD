@@ -67,18 +67,22 @@ public class Line {
     }
 
     public void up() {
+        // Por implementar
         System.out.print((char)27 + "[A");
     }
 
     public void down() {
+        // Por implementar
         System.out.print((char)27 + "[B");
     }
 
     public void delete() {
+        // Por implementar
         System.out.print((char)27 + "[3~");
     }
 
     public void backspace() {
+        // Por implementar
         System.out.print((char)27 + "[8~");
     }
 
@@ -87,11 +91,15 @@ public class Line {
     }
 
     public void home() {
-        System.out.print((char)27 + "[H");
+        while(actualColum > 0){
+            left();
+        }
     }
 
     public void end() {
-        System.out.print((char)27 + "[F");
+        while(actualColum < buff.size()){
+            right();
+        }
     }
 
     public String toString(){

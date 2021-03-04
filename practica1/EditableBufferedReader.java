@@ -42,7 +42,7 @@ public class EditableBufferedReader extends BufferedReader {
     public int read() throws IOException {
         int character = super.read();
         if (character == ESC) {
-            character = super.read();
+            character = super.read();   // Avoid '['
             character = super.read();
             switch (character) {
                 case LEFT:
@@ -64,6 +64,7 @@ public class EditableBufferedReader extends BufferedReader {
                     line.end();
                     break;
                 case INSERT:
+                    character = super.read();   // Avoid '~'
                     line.insert();
                     break;
                 case DEL:
