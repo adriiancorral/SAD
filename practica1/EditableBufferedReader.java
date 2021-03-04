@@ -1,5 +1,3 @@
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -56,8 +54,8 @@ public class EditableBufferedReader extends BufferedReader {
                 case '3':       // Del (suprimir)
                     System.out.print((char)27 + "[3~");
                     break;
-                case 'f':       // BackDel
-                    System.out.print((char)27 + "[D");
+                case '8':       // Backspace 
+                    System.out.print((char)27 + "[8~");
                     break;
                 default:
                     System.out.print((char)27 + "[D");
