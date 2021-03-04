@@ -53,8 +53,11 @@ public class EditableBufferedReader extends BufferedReader {
                 case '2':       // Insert
                     character = 306;
                     break;
-                case 'd':
+                case 'd':       // Del
                     character = 307;
+                    break;
+                case 'f':       // BackDel
+                    character = 308;
                     break;
                 default:
                     character = 400;
