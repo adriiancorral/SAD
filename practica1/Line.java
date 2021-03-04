@@ -53,13 +53,17 @@ public class Line {
     }
 
     public void left() {
-        System.out.print(ESC_LEFT);
-        actualColum--;
+        if (actualColum < 0) {
+            System.out.print(ESC_LEFT);
+            actualColum--;
+        }
     }
 
     public void right() {
-        System.out.print(ESC_RIGHT);
-        actualColum++;
+        if (actualColum < buff.size()) {
+            System.out.print(ESC_RIGHT);
+            actualColum++;
+        }
     }
 
     public void up() {
