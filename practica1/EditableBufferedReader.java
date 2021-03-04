@@ -26,46 +26,46 @@ public class EditableBufferedReader extends BufferedReader {
 
     @Override
     public int read() throws IOException {
-        /*int character = super.read();
+        int character = super.read();
         if (character == 27) {
             character = super.read();
             character = super.read();
             if (character == 2) { int aux = super.read();}
             switch ((char) character) {
                 case 'D':       // Left
-                    character = 300;
+                    System.out.print((char)27 + "[D");
                     break;
                 case 'C':       // Right
-                    character = 301;
+                    System.out.print((char)27 + "[C");
                     break;
                 case 'A':       // Up
-                    character = 302;
+                    System.out.print((char)27 + "[A");
                     break;
                 case 'B':       // Down
-                    character = 303;
+                    System.out.print((char)27 + "[B");
                     break;
                 case 'H':       // Home
-                    character = 304;
+                    System.out.print((char)27 + "[H");
                     break;
                 case 'F':       // End
-                    character = 305;
+                    System.out.print((char)27 + "[F");
                     break;
                 case '2':       // Insert
-                    character = 306;
+                    System.out.print((char)27 + "[2~");
                     break;
-                case 'd':       // Del
-                    character = 307;
+                case '3':       // Del (suprimir)
+                    System.out.print((char)27 + "[3~");
                     break;
                 case 'f':       // BackDel
-                    character = 308;
+                    System.out.print((char)27 + "[D");
                     break;
                 default:
-                    character = 400;
+                    System.out.print((char)27 + "[D");
                     break;
             }
+            character = 300;
         }
-        return character;*/
-        return super.read();
+        return character;
     }
 
     @Override
@@ -77,8 +77,10 @@ public class EditableBufferedReader extends BufferedReader {
         int character = 0;
         do {
             character = read();
-            System.out.print((char)character);
-            sb.append((char) character);
+            if (character != 300) {
+                System.out.print((char)character);
+                sb.append((char) character);
+            }
         } while(character != 13);
 
         unsetRaw();
