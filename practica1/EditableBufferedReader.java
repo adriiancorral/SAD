@@ -28,14 +28,36 @@ public class EditableBufferedReader extends BufferedReader {
     public int read() throws IOException {
         int character = super.read();
         if (character == 27) {
-            character = read();
-            character = read();
+            character = super.read();
+            character = super.read();
+            if (character == 2) { int aux = super.read();}
             switch ((char) character) {
-                case 'D':
-                    character = 256;
+                case 'D':       // Left
+                    character = 300;
+                    break;
+                case 'C':       // Right
+                    character = 301;
+                    break;
+                case 'A':       // Up
+                    character = 302;
+                    break;
+                case 'B':       // Down
+                    character = 303;
+                    break;
+                case 'H':       // Home
+                    character = 304;
+                    break;
+                case 'F':       // End
+                    character = 305;
+                    break;
+                case '2':       // Insert
+                    character = 306;
+                    break;
+                case 'd':
+                    character = 307;
                     break;
                 default:
-                    character = 257;
+                    character = 400;
                     break;
             }
         }
@@ -51,6 +73,7 @@ public class EditableBufferedReader extends BufferedReader {
         int character = 0;
         do {
             character = read();
+            System.out.print((int)character);
             sb.append((char) character);
         } while(character != 13);
 
