@@ -59,19 +59,19 @@ public class EditableBufferedReader extends BufferedReader {
                 case DOWN:
                     System.out.print((char)27 + "[B");
                     break;
-                case 'H':       // Home
+                case HOME:
                     System.out.print((char)27 + "[H");
                     break;
-                case 'F':       // End
+                case END:
                     System.out.print((char)27 + "[F");
                     break;
-                case '2':       // Insert
+                case INSERT:
                     System.out.print((char)27 + "[2~");
                     break;
-                case '3':       // Del (suprimir)
+                case DEL:
                     System.out.print((char)27 + "[3~");
                     break;
-                case '8':       // Backspace 
+                case BACKSPACE:
                     System.out.print((char)27 + "[8~");
                     break;
                 default:

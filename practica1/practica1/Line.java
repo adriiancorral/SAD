@@ -48,33 +48,31 @@ public class Line {
     }
 
     public void up() {
-        if (buffLength >= maxCols) {
-
-        }
+        System.out.print((char)27 + "[A");
     }
 
     public void down() {
-        // Falta rellenar
+        System.out.print((char)27 + "[B");
     }
 
     public void delete() {
-        // Falta rellenar
+        System.out.print((char)27 + "[3~");
     }
 
     public void backspace() {
-        // Falta rellenar
+        System.out.print((char)27 + "[8~");
     }
 
     public void insert() {
-        // Falta rellenar
+        System.out.print((char)27 + "[2~");
     }
 
     public void home() {
-        // Falta rellenar
+        System.out.print((char)27 + "[H");
     }
 
     public void end() {
-        // Falta rellenar
+        System.out.print((char)27 + "[F");
     }
     
 }
