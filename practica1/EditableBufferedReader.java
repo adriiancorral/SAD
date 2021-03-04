@@ -26,7 +26,7 @@ public class EditableBufferedReader extends BufferedReader {
 
     @Override
     public int read() throws IOException {
-        int character = super.read();
+        /*int character = super.read();
         if (character == 27) {
             character = super.read();
             character = super.read();
@@ -64,7 +64,8 @@ public class EditableBufferedReader extends BufferedReader {
                     break;
             }
         }
-        return character;
+        return character;*/
+        return super.read();
     }
 
     @Override
@@ -76,7 +77,7 @@ public class EditableBufferedReader extends BufferedReader {
         int character = 0;
         do {
             character = read();
-            System.out.print((int)character);
+            System.out.print((char)character);
             sb.append((char) character);
         } while(character != 13);
 
