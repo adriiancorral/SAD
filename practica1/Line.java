@@ -1,49 +1,65 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
 
-    private char[] buff;
-    private int buffLength;
+    public static final char ESC = (char)27;
+    public static final String ESC_LEFT = ESC + "[D";
+    public static final String ESC_RIGHT = ESC + "[C";
+    public static final String ESC_UP = ESC + "[A";
+    public static final String ESC_DOWN = ESC + "[B";
+    public static final String ESC_DEL = ESC + "[3~";
+    public static final String ESC_BACKSPACE = ESC + "[8~";
+    public static final String ESC_INSERT = ESC + "[2~";
+    public static final String ESC_HOME = ESC + "[H";
+    public static final String ESC_END = ESC + "[F";
+
+    private List<Character> buff;
     private int actualColum, actualRow;
     private int maxCols;
+    private boolean insert;
 
     public Line() {
         actualColum = 0;
         actualRow = 0;
-        buffLength = 0;
-    }
-
-    public int getActualColum() {
-        return actualColum;
+        buff = new ArrayList<>();
+        insert = false;
     }
 
     public void addChar(char c) {
-        for (int i=actualColum; i <= buffLength; i++) {
-            char aux = buff[actualColum];
-            buff[actualColum] = c;
-            buff[actualColum + 1] = aux;
+        if (actualColum == buff.size()) {   // We are at the end of buffer
+            buff.add(c);
+            System.out.print(c);
+            actualColum++;
+        } else {    // We are at the middle of buffer
+            if (insert) {   // Insert ON
+                buff.set(actualColum, c);
+            } else {    // Insert OFF
+                buff.add(actualColum, c);
+            }
+            System.out.print(c);
+            actualColum++;
+            // Update terminal
+            int moves = 0;
+            for (int i = actualColum; i < buff.size(); i++) {
+                System.out.print(buff.get(i));
+                moves++;
+            }
+            // Put the cursor to the original position
+            for (int i = 0; i < moves; i++) {
+                System.out.print(ESC_LEFT);
+            }
         }
-        actualColum++;
-        buffLength++;
     }
 
     public void left() {
-        System.out.print((char)27 + "[D");
+        System.out.print(ESC_LEFT);
         actualColum--;
-        if (actualColum < 0) {
-            actualColum = maxCols - 1;
-            up();
-            end();
-        }
     }
 
     public void right() {
-        System.out.print((char)27 + "[C");
+        System.out.print(ESC_RIGHT);
         actualColum++;
-        if (actualColum >= maxCols) {
-            actualColum = 0;
-            down();
-            home();
-        }
     }
 
     public void up() {
@@ -72,6 +88,14 @@ public class Line {
 
     public void end() {
         System.out.print((char)27 + "[F");
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder(buff.size());
+        for(Character ch: buff) {
+            sb.append(ch);
+        }
+        return sb.toString();
     }
     
 }

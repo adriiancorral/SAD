@@ -46,31 +46,31 @@ public class EditableBufferedReader extends BufferedReader {
             character = super.read();
             switch (character) {
                 case LEFT:
-                    System.out.print((char)27 + "[D");
+                    line.left();
                     break;
                 case RIGHT:
-                    System.out.print((char)27 + "[C");
+                    line.right();
                     break;
                 case UP:
-                    System.out.print((char)27 + "[A");
+                    line.up();
                     break;
                 case DOWN:
-                    System.out.print((char)27 + "[B");
+                    line.down();
                     break;
                 case HOME:
-                    System.out.print((char)27 + "[H");
+                    line.home();
                     break;
                 case END:
-                    System.out.print((char)27 + "[F");
+                    line.end();
                     break;
                 case INSERT:
-                    System.out.print((char)27 + "[2~");
+                    line.insert();
                     break;
                 case DEL:
-                    System.out.print((char)27 + "[3~");
+                    line.delete();
                     break;
                 case BACKSPACE:
-                    System.out.print((char)27 + "[8~");
+                    line.backspace();
                     break;
             }
             character = SPECIAL;
@@ -87,16 +87,14 @@ public class EditableBufferedReader extends BufferedReader {
 
         do {
             character = read();
-            /*if (character != SPECIAL) {
+            if (character != SPECIAL) {
                 line.addChar((char)character);
-            }*/
-            System.out.print((char)character);
+            }
         } while(character != ENTER);
 
         unsetRaw();
 
-        //return line.toString();
-        return "OK";
+        return line.toString();
     }
 
 }
