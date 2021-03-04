@@ -87,7 +87,7 @@ public class EditableBufferedReader extends BufferedReader {
 
         do {
             character = read();
-            if (character != SPECIAL) {
+            if (character != SPECIAL && character != ENTER) {
                 line.addChar((char)character);
             }
         } while(character != ENTER);

@@ -34,15 +34,15 @@ public class Line {
         } else {    // We are at the middle of buffer
             if (insert) {   // Insert ON
                 buff.set(actualColum, c);
-            } else {    // Insert OFF
+            } else {        // Insert OFF
                 buff.add(actualColum, c);
             }
             System.out.print(c);
             actualColum++;
             // Update terminal
             int moves = 0;
-            for (int i = actualColum; i < buff.size(); i++) {
-                System.out.print(buff.get(i));
+            for (int i = 0; i + actualColum < buff.size(); i++) {
+                System.out.print(buff.get(i + actualColum));
                 moves++;
             }
             // Put the cursor to the original position
@@ -53,7 +53,7 @@ public class Line {
     }
 
     public void left() {
-        if (actualColum < 0) {
+        if (actualColum > 0) {
             System.out.print(ESC_LEFT);
             actualColum--;
         }
@@ -83,7 +83,7 @@ public class Line {
     }
 
     public void insert() {
-        System.out.print((char)27 + "[2~");
+        insert ^= true;
     }
 
     public void home() {
