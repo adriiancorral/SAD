@@ -1,4 +1,4 @@
-package practica1;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,14 +10,14 @@ public class EditableBufferedReader extends BufferedReader {
         super(in);
     }
 
-    public void setRaw() {
+    public static void setRaw() {
         try {
             String[] cmd = {"/bin/sh", "-c", "stty raw </dev/tty"};
             Runtime.getRuntime().exec(cmd).waitFor();
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    public void unsetRaw() {
+    public static void unsetRaw() {
         try {
             String[] cmd = {"/bin/sh", "-c", "stty cooked </dev/tty"};
             Runtime.getRuntime().exec(cmd).waitFor();
@@ -26,7 +26,20 @@ public class EditableBufferedReader extends BufferedReader {
 
     @Override
     public int read() throws IOException {
-        return super.read();
+        int character = super.read();
+        if (character == 27) {
+            character = read();
+            character = read();
+            switch ((char) character) {
+                case 'D':
+                    character = 256;
+                    break;
+                default:
+                    character = 257;
+                    break;
+            }
+        }
+        return character;
     }
 
     @Override
@@ -35,15 +48,11 @@ public class EditableBufferedReader extends BufferedReader {
         setRaw();
 
         StringBuilder sb = new StringBuilder();
-        int character = read();
-        while(character != 10) {
-            if (character == 27) {
-                character = read();
-                character = read();
-            }
-            sb.append((char)character);
+        int character = 0;
+        do {
             character = read();
-        }
+            sb.append((char) character);
+        } while(character != 13);
 
         unsetRaw();
 
