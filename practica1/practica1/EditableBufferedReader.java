@@ -1,11 +1,29 @@
+package practica1;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 
 public class EditableBufferedReader extends BufferedReader {
 
+    private static final int ENTER = 13;
+    private static final int ESC = 27;
+    private static final int SPECIAL = 300;
+    private static final int LEFT = 'D';
+    private static final int RIGHT = 'C';
+    private static final int UP = 'A';
+    private static final int DOWN = 'B';
+    private static final int HOME = 'H';
+    private static final int END = 'F';
+    private static final int INSERT = '2';
+    private static final int DEL = '3';
+    private static final int BACKSPACE = '8';
+
+    private Line line;
+
     public EditableBufferedReader(Reader in) {
         super(in);
+        line = new Line();
     }
 
     public static void setRaw() {
@@ -25,21 +43,20 @@ public class EditableBufferedReader extends BufferedReader {
     @Override
     public int read() throws IOException {
         int character = super.read();
-        if (character == 27) {
+        if (character == ESC) {
             character = super.read();
             character = super.read();
-            if (character == 2) { int aux = super.read();}
-            switch ((char) character) {
-                case 'D':       // Left
+            switch (character) {
+                case LEFT:
                     System.out.print((char)27 + "[D");
                     break;
-                case 'C':       // Right
+                case RIGHT:
                     System.out.print((char)27 + "[C");
                     break;
-                case 'A':       // Up
+                case UP:
                     System.out.print((char)27 + "[A");
                     break;
-                case 'B':       // Down
+                case DOWN:
                     System.out.print((char)27 + "[B");
                     break;
                 case 'H':       // Home
@@ -61,9 +78,10 @@ public class EditableBufferedReader extends BufferedReader {
                     System.out.print((char)27 + "[D");
                     break;
             }
-            character = 300;
+            return SPECIAL;
+        } else {
+            return character;
         }
-        return character;
     }
 
     @Override
@@ -71,19 +89,18 @@ public class EditableBufferedReader extends BufferedReader {
 
         setRaw();
 
-        StringBuilder sb = new StringBuilder();
         int character = 0;
+
         do {
             character = read();
-            if (character != 300) {
-                System.out.print((char)character);
-                sb.append((char) character);
+            if (character != SPECIAL) {
+                line.addChar((char)character);
             }
-        } while(character != 13);
+        } while(character != ENTER);
 
         unsetRaw();
 
-        return sb.toString();
+        return line.toString();
     }
 
 }
