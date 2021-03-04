@@ -74,14 +74,10 @@ public class EditableBufferedReader extends BufferedReader {
                 case BACKSPACE:
                     System.out.print((char)27 + "[8~");
                     break;
-                default:
-                    System.out.print((char)27 + "[D");
-                    break;
             }
-            return SPECIAL;
-        } else {
-            return character;
+            character = SPECIAL;
         }
+        return character;
     }
 
     @Override
