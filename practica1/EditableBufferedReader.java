@@ -1,5 +1,3 @@
-package practica1;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -89,14 +87,16 @@ public class EditableBufferedReader extends BufferedReader {
 
         do {
             character = read();
-            if (character != SPECIAL) {
+            /*if (character != SPECIAL) {
                 line.addChar((char)character);
-            }
+            }*/
+            System.out.print((char)character);
         } while(character != ENTER);
 
         unsetRaw();
 
-        return line.toString();
+        //return line.toString();
+        return "OK";
     }
 
 }
