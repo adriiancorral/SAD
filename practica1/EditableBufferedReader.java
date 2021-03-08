@@ -15,7 +15,7 @@ public class EditableBufferedReader extends BufferedReader {
     private static final int END = 'F';
     private static final int INSERT = '2';
     private static final int DEL = '3';
-    private static final int BACKSPACE = '8';
+    private static final int BACKSPACE = 127;
 
     private Line line;
 
@@ -68,10 +68,8 @@ public class EditableBufferedReader extends BufferedReader {
                     line.insert();
                     break;
                 case DEL:
+                    character = super.read();   // Avoid '~'
                     line.delete();
-                    break;
-                case BACKSPACE:
-                    line.backspace();
                     break;
             }
             character = SPECIAL;
@@ -89,7 +87,11 @@ public class EditableBufferedReader extends BufferedReader {
         do {
             character = read();
             if (character != SPECIAL && character != ENTER) {
-                line.addChar((char)character);
+                if (character == BACKSPACE) {
+                    line.backspace();
+                } else {
+                    line.addChar((char)character);
+                }
             }
         } while(character != ENTER);
 

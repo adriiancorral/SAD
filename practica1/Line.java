@@ -77,13 +77,43 @@ public class Line {
     }
 
     public void delete() {
-        // Por implementar
-        System.out.print((char)27 + "[3~");
+        if (actualColum < buff.size()) {
+            buff.remove(actualColum);
+            // Update terminal
+            int moves = 0;
+            for (int i = 0; i + actualColum < buff.size(); i++) {
+                System.out.print(buff.get(i + actualColum));
+                moves++;
+            }
+            System.out.print(" ");
+            moves++;
+            // Put the cursor to the original position
+            for (int i = 0; i < moves; i++) {
+                System.out.print(ESC_LEFT);
+            }
+        }
     }
 
     public void backspace() {
-        // Por implementar
-        System.out.print((char)27 + "[8~");
+        // En desaroyo
+        if (actualColum > 0) {
+            actualColum--;
+            buff.remove(actualColum);
+        }
+        // Update terminal
+        System.out.print(ESC_LEFT);
+        int moves = 0;
+        for (int i = 0; i + actualColum < buff.size(); i++) {
+            System.out.print(buff.get(i + actualColum));
+            moves++;
+        }
+        System.out.print(" ");
+        moves++;
+        // Put the cursor to the original position
+        for (int i = 0; i < moves; i++) {
+            System.out.print(ESC_LEFT);
+        }
+
     }
 
     public void insert() {
