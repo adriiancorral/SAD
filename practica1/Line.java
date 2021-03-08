@@ -99,21 +99,20 @@ public class Line {
         if (actualColum > 0) {
             actualColum--;
             buff.remove(actualColum);
-        }
-        // Update terminal
-        System.out.print(ESC_LEFT);
-        int moves = 0;
-        for (int i = 0; i + actualColum < buff.size(); i++) {
-            System.out.print(buff.get(i + actualColum));
-            moves++;
-        }
-        System.out.print(" ");
-        moves++;
-        // Put the cursor to the original position
-        for (int i = 0; i < moves; i++) {
+            // Update terminal
             System.out.print(ESC_LEFT);
+            int moves = 0;
+            for (int i = 0; i + actualColum < buff.size(); i++) {
+                System.out.print(buff.get(i + actualColum));
+                moves++;
+            }
+            System.out.print(" ");
+            moves++;
+            // Put the cursor to the original position
+            for (int i = 0; i < moves; i++) {
+                System.out.print(ESC_LEFT);
+            }
         }
-
     }
 
     public void insert() {
