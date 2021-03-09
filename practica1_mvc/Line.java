@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class Line {
+public class Line extends Observable{
 
     public static final char ESC = (char)27;
     public static final String ESC_LEFT = ESC + "[D";
@@ -27,28 +28,22 @@ public class Line {
     }
 
     public void addChar(char c) {
-        if (actualColum == buff.size()) {   // We are at the end of buffer
-            buff.add(c);
-            System.out.print(c);
-            actualColum++;
-        } else {    // We are at the middle of buffer
-            if (insert) {   // Insert ON
-                buff.set(actualColum, c);
-            } else {        // Insert OFF
-                buff.add(actualColum, c);
-            }
-            System.out.print(c);
-            actualColum++;
-            // Update terminal
-            int moves = 0;
-            for (int i = 0; i + actualColum < buff.size(); i++) {
-                System.out.print(buff.get(i + actualColum));
-                moves++;
-            }
-            // Put the cursor to the original position
-            for (int i = 0; i < moves; i++) {
-                System.out.print(ESC_LEFT);
-            }
+        if (insert && actualColum != buff.size()) {   // Insert ON
+            buff.set(actualColum, c);
+        } else {        // Insert OFF
+            buff.add(actualColum, c);
+        }
+        System.out.print(c);
+        actualColum++;
+        // Update terminal
+        int moves = 0;
+        for (int i = 0; i + actualColum < buff.size(); i++) {
+            System.out.print(buff.get(i + actualColum));
+            moves++;
+        }
+        // Put the cursor to the original position
+        for (int i = 0; i < moves; i++) {
+            System.out.print(ESC_LEFT);
         }
     }
 
