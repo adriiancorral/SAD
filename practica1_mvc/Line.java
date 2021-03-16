@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-public class Line extends Observable{
+public class Line extends Observable {
 
     public static final char ESC = (char)27;
     public static final String ESC_LEFT = ESC + "[D";
@@ -19,12 +19,23 @@ public class Line extends Observable{
     private int actualColum, actualRow;
     private int maxCols;
     private boolean insert;
+    private final Console console;
 
     public Line() {
         actualColum = 0;
         actualRow = 0;
         buff = new ArrayList<>();
         insert = false;
+        console = new Console();
+        addObserver(console);
+    }
+
+    public int getActualColum() {
+        return actualColum;
+    }
+
+    public List<Character> getBuff() {
+        return buff;
     }
 
     public void addChar(char c) {
@@ -35,16 +46,7 @@ public class Line extends Observable{
         }
         System.out.print(c);
         actualColum++;
-        // Update terminal
-        int moves = 0;
-        for (int i = 0; i + actualColum < buff.size(); i++) {
-            System.out.print(buff.get(i + actualColum));
-            moves++;
-        }
-        // Put the cursor to the original position
-        for (int i = 0; i < moves; i++) {
-            System.out.print(ESC_LEFT);
-        }
+        notifyObservers();
     }
 
     public void left() {
