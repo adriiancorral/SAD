@@ -10,10 +10,7 @@ public class Line extends Observable {
     public static final String ESC_UP = ESC + "[A";
     public static final String ESC_DOWN = ESC + "[B";
     public static final String ESC_DEL = ESC + "[3~";
-    public static final String ESC_BACKSPACE = ESC + "[8~";
     public static final String ESC_INSERT = ESC + "[2~";
-    public static final String ESC_HOME = ESC + "[H";
-    public static final String ESC_END = ESC + "[F";
 
     private List<Character> buff;
     private int actualColum, actualRow;
