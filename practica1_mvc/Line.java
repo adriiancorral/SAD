@@ -38,6 +38,38 @@ public class Line extends Observable {
         return buff;
     }
 
+    public void specialAction(int character) {
+        switch (character) {
+            case EditableBufferedReader.UP:
+                up();
+                break;
+            case EditableBufferedReader.DOWN:
+                down();
+                break;
+            case EditableBufferedReader.RIGHT:
+                right();
+                break;
+            case EditableBufferedReader.LEFT:
+                left();
+                break;
+            case EditableBufferedReader.HOME:
+                home();
+                break;
+            case EditableBufferedReader.INSERT:
+                insert();
+                break;
+            case EditableBufferedReader.DEL:
+                delete();
+                break;
+            case EditableBufferedReader.END:
+                end();
+                break;
+            case EditableBufferedReader.BACKSPACE:
+                backspace();
+                break;
+        }
+    }
+
     public void addChar(char c) {
         if (insert && actualColum != buff.size()) {   // Insert ON
             buff.set(actualColum, c);
