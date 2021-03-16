@@ -77,8 +77,8 @@ public class Line extends Observable {
             buff.add(actualColum, c);
         }
         System.out.print(c);
-        actualColum++;
         notifyObservers();
+        actualColum++;
     }
 
     public void left() {
@@ -122,7 +122,6 @@ public class Line extends Observable {
     }
 
     public void backspace() {
-        // En desaroyo
         if (actualColum > 0) {
             actualColum--;
             buff.remove(actualColum);
