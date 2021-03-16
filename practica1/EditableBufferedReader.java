@@ -4,18 +4,18 @@ import java.io.Reader;
 
 public class EditableBufferedReader extends BufferedReader {
 
-    private static final int ENTER = 13;
-    private static final int ESC = 27;
-    private static final int SPECIAL = 300;
-    private static final int LEFT = 'D';
-    private static final int RIGHT = 'C';
-    private static final int UP = 'A';
-    private static final int DOWN = 'B';
-    private static final int HOME = 'H';
-    private static final int END = 'F';
-    private static final int INSERT = '2';
-    private static final int DEL = '3';
-    private static final int BACKSPACE = 127;
+    public static final int ENTER = 13;
+    public static final int ESC = 27;
+    public static final int SPECIAL = 30000;
+    public static final int UP = 30001;
+    public static final int DOWN = 30002;
+    public static final int RIGHT = 30003;
+    public static final int LEFT = 30004;
+    public static final int HOME = 30005;
+    public static final int END = 30006;
+    public static final int INSERT = 30007;
+    public static final int DEL = 30008;
+    public static final int BACKSPACE = 30009;
 
     private Line line;
 
@@ -45,35 +45,33 @@ public class EditableBufferedReader extends BufferedReader {
             character = super.read();   // Avoid '['
             character = super.read();
             switch (character) {
-                case LEFT:
-                    line.left();
-                    break;
-                case RIGHT:
-                    line.right();
-                    break;
-                case UP:
-                    line.up();
-                    break;
-                case DOWN:
-                    line.down();
-                    break;
-                case HOME:
-                    line.home();
-                    break;
-                case END:
-                    line.end();
-                    break;
-                case INSERT:
+                case 'A':
+                    return UP;
+                case 'B':
+                    return DOWN;
+                case 'C':
+                    return RIGHT;
+                case 'D':
+                    return LEFT;
+                case 'H':
+                    return HOME;
+                case 'F':
+                    return END;
+                case '1':
                     character = super.read();   // Avoid '~'
-                    line.insert();
-                    break;
-                case DEL:
+                    return HOME;
+                case '2':
                     character = super.read();   // Avoid '~'
-                    line.delete();
-                    break;
+                    return INSERT;
+                case '3':
+                    character = super.read();   // Avoid '~'
+                    return DEL;
+                case '4':
+                    character = super.read();   // Avoid '~'
+                    return END;
             }
-            character = SPECIAL;
-        }
+
+        } else if (character == 127) return BACKSPACE;
         return character;
     }
 
@@ -86,12 +84,10 @@ public class EditableBufferedReader extends BufferedReader {
 
         do {
             character = read();
-            if (character != SPECIAL && character != ENTER) {
-                if (character == BACKSPACE) {
-                    line.backspace();
-                } else {
-                    line.addChar((char)character);
-                }
+            if (character < SPECIAL && character != ENTER) {
+                line.addChar((char)character);
+            } else {
+                line.specialAction(character);
             }
         } while(character != ENTER);
 

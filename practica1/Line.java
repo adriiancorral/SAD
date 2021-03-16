@@ -26,6 +26,38 @@ public class Line {
         insert = false;
     }
 
+    public void specialAction(int character) {
+        switch (character) {
+            case EditableBufferedReader.UP:
+                up();
+                break;
+            case EditableBufferedReader.DOWN:
+                down();
+                break;
+            case EditableBufferedReader.RIGHT:
+                right();
+                break;
+            case EditableBufferedReader.LEFT:
+                left();
+                break;
+            case EditableBufferedReader.HOME:
+                home();
+                break;
+            case EditableBufferedReader.INSERT:
+                insert();
+                break;
+            case EditableBufferedReader.DEL:
+                delete();
+                break;
+            case EditableBufferedReader.END:
+                end();
+                break;
+            case EditableBufferedReader.BACKSPACE:
+                backspace();
+                break;
+        }
+    }
+
     public void addChar(char c) {
         if (actualColum == buff.size()) {   // We are at the end of buffer
             buff.add(c);
