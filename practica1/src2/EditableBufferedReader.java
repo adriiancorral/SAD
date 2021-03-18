@@ -93,7 +93,7 @@ public class EditableBufferedReader extends BufferedReader {
 
         unsetRaw();
 
-        return "correcto";
+        return line.toString();
     }
 
 }
