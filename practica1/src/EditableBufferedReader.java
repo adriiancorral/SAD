@@ -87,7 +87,35 @@ public class EditableBufferedReader extends BufferedReader {
             if (character < SPECIAL && character != ENTER) {
                 line.addChar((char)character);
             } else {
-                line.specialAction(character);
+                switch (character) {
+                    case UP:
+                        line.up();
+                        break;
+                    case DOWN:
+                        line.down();
+                        break;
+                    case RIGHT:
+                        line.right();
+                        break;
+                    case LEFT:
+                        line.left();
+                        break;
+                    case HOME:
+                        line.home();
+                        break;
+                    case INSERT:
+                        line.insert();
+                        break;
+                    case DEL:
+                        line.delete();
+                        break;
+                    case END:
+                        line.end();
+                        break;
+                    case BACKSPACE:
+                        line.backspace();
+                        break;
+                }
             }
         } while(character != ENTER);
 
