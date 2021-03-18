@@ -1,3 +1,5 @@
+package src2;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -17,11 +19,8 @@ public class EditableBufferedReader extends BufferedReader {
     public static final int DEL = 30008;
     public static final int BACKSPACE = 30009;
 
-    private Line line;
-
     public EditableBufferedReader(Reader in) {
         super(in);
-        line = new Line();
     }
 
     public static void setRaw() {
@@ -81,6 +80,7 @@ public class EditableBufferedReader extends BufferedReader {
         setRaw();
 
         int character = 0;
+        Line line = new Line();
 
         do {
             character = read();
@@ -93,7 +93,7 @@ public class EditableBufferedReader extends BufferedReader {
 
         unsetRaw();
 
-        return line.toString();
+        return "correcto";
     }
 
 }

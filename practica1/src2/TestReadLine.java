@@ -1,3 +1,5 @@
+package src2;
+
 import java.io.*;
 
 class TestReadLine {

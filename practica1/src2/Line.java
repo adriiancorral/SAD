@@ -1,7 +1,10 @@
+package src2;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class Line {
+public class Line extends Observable {
 
     public static final char ESC = (char)27;
     public static final String ESC_LEFT = ESC + "[D";
@@ -9,21 +12,29 @@ public class Line {
     public static final String ESC_UP = ESC + "[A";
     public static final String ESC_DOWN = ESC + "[B";
     public static final String ESC_DEL = ESC + "[3~";
-    public static final String ESC_BACKSPACE = ESC + "[8~";
     public static final String ESC_INSERT = ESC + "[2~";
-    public static final String ESC_HOME = ESC + "[H";
-    public static final String ESC_END = ESC + "[F";
 
     private List<Character> buff;
     private int actualColum, actualRow;
     private int maxCols;
     private boolean insert;
+    private final Console console;
 
     public Line() {
         actualColum = 0;
         actualRow = 0;
         buff = new ArrayList<>();
         insert = false;
+        console = new Console();
+        addObserver(console);
+    }
+
+    public int getActualColum() {
+        return actualColum;
+    }
+
+    public List<Character> getBuff() {
+        return buff;
     }
 
     public void specialAction(int character) {
@@ -59,29 +70,14 @@ public class Line {
     }
 
     public void addChar(char c) {
-        if (actualColum == buff.size()) {   // We are at the end of buffer
-            buff.add(c);
-            System.out.print(c);
-            actualColum++;
-        } else {    // We are at the middle of buffer
-            if (insert) {   // Insert ON
-                buff.set(actualColum, c);
-            } else {        // Insert OFF
-                buff.add(actualColum, c);
-            }
-            System.out.print(c);
-            actualColum++;
-            // Update terminal
-            int moves = 0;
-            for (int i = 0; i + actualColum < buff.size(); i++) {
-                System.out.print(buff.get(i + actualColum));
-                moves++;
-            }
-            // Put the cursor to the original position
-            for (int i = 0; i < moves; i++) {
-                System.out.print(ESC_LEFT);
-            }
+        if (insert && actualColum != buff.size()) {   // Insert ON
+            buff.set(actualColum, c);
+        } else {        // Insert OFF
+            buff.add(actualColum, c);
         }
+        System.out.print(c);
+        notifyObservers();
+        actualColum++;
     }
 
     public void left() {
@@ -125,7 +121,6 @@ public class Line {
     }
 
     public void backspace() {
-        // En desaroyo
         if (actualColum > 0) {
             actualColum--;
             buff.remove(actualColum);
