@@ -5,16 +5,26 @@ import java.util.Observer;
 
 public class Console implements Observer {
 
+    private int maxCols;
+
+    public Console() {
+        maxCols = 0;
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         int moves = 0;
         switch ((int)arg) {
             case Constants.UP:
+                // En desarrollo
                 System.out.print(Constants.ESC_UP);
+                ((Line) o).setActualColum(((Line) o).getActualColum() - maxCols);
                 break;
             
             case Constants.DOWN:
+                // En desarrollo
                 System.out.print(Constants.ESC_DOWN);
+                ((Line) o).setActualColum(((Line) o).getActualColum() + maxCols);
                 break;
             
             case Constants.RIGHT:

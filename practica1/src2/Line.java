@@ -7,14 +7,12 @@ import java.util.Observable;
 public class Line extends Observable {
 
     private List<Character> buff;
-    private int actualColum, actualRow;
-    private int maxCols;
+    private int actualColum;
     private boolean insert;
     private final Console console;
 
     public Line() {
         actualColum = 0;
-        actualRow = 0;
         buff = new ArrayList<>();
         insert = false;
         console = new Console();
@@ -23,6 +21,10 @@ public class Line extends Observable {
 
     public int getActualColum() {
         return actualColum;
+    }
+
+    public void setActualColum(int actCol) {
+        actualColum = actCol;
     }
 
     public List<Character> getBuff() {
