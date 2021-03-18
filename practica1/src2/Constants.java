@@ -2,6 +2,7 @@ package src2;
 
 public abstract class Constants {
 
+    // General constants
     public static final int ENTER = 13;
     public static final int ESC = 27;
     public static final int SPECIAL = 30000;
@@ -16,6 +17,7 @@ public abstract class Constants {
     public static final int DEL = 30008;
     public static final int BACKSPACE = 30009;
 
+    // Escape constants
     public static final char ESC_ESC = (char)27;
 
     public static final String ESC_LEFT = ESC_ESC + "[D";

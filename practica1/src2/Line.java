@@ -6,14 +6,6 @@ import java.util.Observable;
 
 public class Line extends Observable {
 
-    public static final char ESC = (char)27;
-    public static final String ESC_LEFT = ESC + "[D";
-    public static final String ESC_RIGHT = ESC + "[C";
-    public static final String ESC_UP = ESC + "[A";
-    public static final String ESC_DOWN = ESC + "[B";
-    public static final String ESC_DEL = ESC + "[3~";
-    public static final String ESC_INSERT = ESC + "[2~";
-
     private List<Character> buff;
     private int actualColum, actualRow;
     private int maxCols;
