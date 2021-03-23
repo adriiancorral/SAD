@@ -1,10 +1,23 @@
-package src2;
+package no_mvc;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 
 public class EditableBufferedReader extends BufferedReader {
+
+    public static final int ENTER = 13;
+    public static final int ESC = 27;
+    public static final int SPECIAL = 30000;
+    public static final int UP = 30001;
+    public static final int DOWN = 30002;
+    public static final int RIGHT = 30003;
+    public static final int LEFT = 30004;
+    public static final int HOME = 30005;
+    public static final int END = 30006;
+    public static final int INSERT = 30007;
+    public static final int DEL = 30008;
+    public static final int BACKSPACE = 30009;
 
     public EditableBufferedReader(Reader in) {
         super(in);
@@ -27,37 +40,37 @@ public class EditableBufferedReader extends BufferedReader {
     @Override
     public int read() throws IOException {
         int character = super.read();
-        if (character == Constants.ESC) {
+        if (character == ESC) {
             character = super.read();   // Avoid '['
             character = super.read();
             switch (character) {
                 case 'A':
-                    return Constants.UP;
+                    return UP;
                 case 'B':
-                    return Constants.DOWN;
+                    return DOWN;
                 case 'C':
-                    return Constants.RIGHT;
+                    return RIGHT;
                 case 'D':
-                    return Constants.LEFT;
+                    return LEFT;
                 case 'H':
-                    return Constants.HOME;
+                    return HOME;
                 case 'F':
-                    return Constants.END;
+                    return END;
                 case '1':
                     character = super.read();   // Avoid '~'
-                    return Constants.HOME;
+                    return HOME;
                 case '2':
                     character = super.read();   // Avoid '~'
-                    return Constants.INSERT;
+                    return INSERT;
                 case '3':
                     character = super.read();   // Avoid '~'
-                    return Constants.DEL;
+                    return DEL;
                 case '4':
                     character = super.read();   // Avoid '~'
-                    return Constants.END;
+                    return END;
             }
 
-        } else if (character == 127) return Constants.BACKSPACE;
+        } else if (character == 127) return BACKSPACE;
         return character;
     }
 
@@ -71,40 +84,40 @@ public class EditableBufferedReader extends BufferedReader {
 
         do {
             character = read();
-            if (character < Constants.SPECIAL && character != Constants.ENTER) {
+            if (character < SPECIAL && character != ENTER) {
                 line.addChar((char)character);
             } else {
                 switch (character) {
-                    case Constants.UP:
+                    case UP:
                         line.up();
                         break;
-                    case Constants.DOWN:
+                    case DOWN:
                         line.down();
                         break;
-                    case Constants.RIGHT:
+                    case RIGHT:
                         line.right();
                         break;
-                    case Constants.LEFT:
+                    case LEFT:
                         line.left();
                         break;
-                    case Constants.HOME:
+                    case HOME:
                         line.home();
                         break;
-                    case Constants.INSERT:
+                    case INSERT:
                         line.insert();
                         break;
-                    case Constants.DEL:
+                    case DEL:
                         line.delete();
                         break;
-                    case Constants.END:
+                    case END:
                         line.end();
                         break;
-                    case Constants.BACKSPACE:
+                    case BACKSPACE:
                         line.backspace();
                         break;
                 }
             }
-        } while(character != Constants.ENTER);
+        } while(character != ENTER);
 
         unsetRaw();
 

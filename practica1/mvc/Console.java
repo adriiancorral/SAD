@@ -1,4 +1,4 @@
-package src2;
+package mvc;
 
 import java.util.Observable;
 import java.util.Observer;

@@ -1,4 +1,4 @@
-package src2;
+package no_mvc;
 
 import java.io.*;
 

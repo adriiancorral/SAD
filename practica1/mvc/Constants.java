@@ -1,4 +1,4 @@
-package src2;
+package mvc;
 
 public abstract class Constants {
 
