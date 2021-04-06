@@ -1,5 +1,3 @@
-package col;
-
 import java.io.*;
 
 class TerminalColum {
