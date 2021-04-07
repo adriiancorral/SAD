@@ -1,18 +1,21 @@
 import java.io.IOException;
-import java.net.ServerSocket;
+import java.net.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MyServerSocket extends ServerSocket {
 
-    private ConcurrentHashMap<String, MySocket> clients = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, MySocket> clients;
 
     public MyServerSocket(int port) throws IOException {
         super(port);
+        clients = new ConcurrentHashMap<String, MySocket>();
     }
 
     public MySocket accept() {
         try {
-            return (MySocket) super.accept();
+            MySocket s = new MySocket();
+            super.implAccept(s);
+            return s;
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -11,7 +11,7 @@ public class EchoClient {
          */
         MySocket cs = new MySocket(args[0], Integer.parseInt(args[1]), args[2]);
         
-        // Input thread from the keyboard
+        // Input thread (from keyboard to socket)
         new Thread() {
             public void run() {
                 try {
@@ -27,7 +27,7 @@ public class EchoClient {
             }
         }.start();
         
-        // Input thread from the server
+        // Output thread (from server to screen)
         new Thread() {
             public void run() {
                 String line;

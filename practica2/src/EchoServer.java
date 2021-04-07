@@ -5,6 +5,9 @@ public class EchoServer {
         MyServerSocket ss = new MyServerSocket(Integer.parseInt(args[0]));
         while (true) {
             MySocket cs = ss.accept();
+            if (cs == null) {
+                break;
+            }
             new Thread() {
                 public void run() {
                     try {
@@ -16,7 +19,7 @@ public class EchoServer {
                         }
 
                         ss.oldUser(cs);
-                        
+
                         cs.close();
                     } catch (IOException e) {
                         e.printStackTrace();

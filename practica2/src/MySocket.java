@@ -17,6 +17,10 @@ public class MySocket extends Socket {
         buff = new BufferedReader(new InputStreamReader(this.getInputStream()));
     }
 
+    public MySocket() {
+        super();
+    }
+
     public String getUser() {
         return this.user;
     }
