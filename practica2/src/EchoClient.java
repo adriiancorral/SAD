@@ -14,12 +14,12 @@ public class EchoClient {
          */
         MySocket cs = new MySocket(args[0], Integer.parseInt(args[1]), args[2]);
         
-        // Input thread
+        // Input thread from the keyboard
         new Thread() {
             public void run() {
                 try {
                     String line;
-                    BufferedReader buff = new BufferedReader(new InputStreamReader(cs.getInputStream()));
+                    BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
                     while ((line = buff.readLine()) != null) {
                         cs.println(line);
                     }
@@ -30,7 +30,7 @@ public class EchoClient {
             }
         }.start();
         
-        // Output thread
+        // Input thread from the server
         new Thread() {
             public void run() {
                 String line;

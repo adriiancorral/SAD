@@ -26,9 +26,7 @@ public class MySocket extends Socket {
 
     public void println(String line) {
         // En desarrollo
-        if (user != null) {
-            System.out.println("[User: " + user + "] :\t" + line);
-        }
+        
     }
 
     public String readLine() {
