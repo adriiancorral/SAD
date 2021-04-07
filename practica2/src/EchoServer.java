@@ -1,9 +1,5 @@
 import java.io.IOException;
 
-/**
- * EchoServer
- */
-
 public class EchoServer {
     public static void main(String[] args) throws NumberFormatException, IOException {
         MyServerSocket ss = new MyServerSocket(Integer.parseInt(args[0]));
@@ -11,9 +7,19 @@ public class EchoServer {
             MySocket cs = ss.accept();
             new Thread() {
                 public void run() {
-                    String line;
-                    while ((line = cs.readLine()) != null) {
-                        cs.println(line);
+                    try {
+                        ss.newUser(cs);
+
+                        String line;
+                        while ((line = cs.readLine()) != null) {
+                            ss.println(line);
+                        }
+
+                        ss.oldUser(cs);
+                        
+                        cs.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
             }.start();
