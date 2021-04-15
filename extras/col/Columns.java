@@ -29,9 +29,9 @@ public class Columns {
 
             // 2º alternativa
             // Retorna: ESC [ 8 ; filas ; columnas t
-            /* Scanner s1 = new Scanner(System.in);
+            Scanner s1 = new Scanner(System.in);
             s1.skip("\033\\[8;\\d+;(\\d+)t");
-            c = Integer.parseInt(s1.match().group(1)); */
+            c = Integer.parseInt(s1.match().group(1));
 
             // 3º alternativa (nextInt)
             /* Scanner s2 = new Scanner(System.in);
@@ -49,11 +49,11 @@ public class Columns {
 
             // 5º alternativa
             // Retorna: ESC [ 8 ; filas ; columnas t
-            String str = readChars(new BufferedReader(new InputStreamReader(System.in)));
+            /* String str = readChars(new BufferedReader(new InputStreamReader(System.in)));
             String cmax = str.substring(
                 str.indexOf(";", str.indexOf(";") + 1) + 1, str.length() - 1)
             ;
-            c = Integer.parseInt(cmax);
+            c = Integer.parseInt(cmax); */
 
             // 6º alternativa (una sola linea)
             // Al ejecutar el programa le pasas la variable COLUMNS
