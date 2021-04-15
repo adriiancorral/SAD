@@ -19,6 +19,7 @@ public class CelsiusConverter implements ActionListener {
     public CelsiusConverter() {
         //Create and set up the window.
         converterFrame = new JFrame("Celsius to Fahrenheit");
+        
         converterFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the panel.
@@ -34,6 +35,7 @@ public class CelsiusConverter implements ActionListener {
 
         //Add the panel to the window.
         converterFrame.getContentPane().add(converterPanel, BorderLayout.CENTER);
+        converterPanel.setBackground(new Color(45,45,45));
 
         //Display the window.
         converterFrame.pack();
@@ -49,6 +51,15 @@ public class CelsiusConverter implements ActionListener {
         celsiusLabel = new JLabel("Celsius", SwingConstants.CENTER);
         fahrenheitLabel = new JLabel("Fahrenheit", SwingConstants.CENTER);
         convertTemp = new JButton("Convert");
+
+        tempCelsius.setBackground(new Color(75,75,75));
+        tempCelsius.setForeground(new Color(220,220,220));
+        celsiusLabel.setForeground(new Color(220,220,220));
+        fahrenheitLabel.setForeground(new Color(220,220,220));
+        convertTemp.setBackground(new Color(75,75,75));
+        convertTemp.setOpaque(true);
+        convertTemp.setBorderPainted(false);
+        convertTemp.setForeground(new Color(220,220,220));
 
         //Listen to events from the Convert button (JButton) and return key (JTextField).
         tempCelsius.addActionListener(this);
