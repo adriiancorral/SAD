@@ -18,12 +18,13 @@ public class CelsiusConverter implements ActionListener {
 
     public CelsiusConverter() {
         //Create and set up the window.
-        converterFrame = new JFrame("Celsius to Farenheit");
+        converterFrame = new JFrame("Celsius to Fahrenheit");
         converterFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the panel.
         converterPanel = new JPanel();
         converterPanel.setLayout(new GridLayout(2, 2));
+        converterPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         //Add the widgets.
         addWidgets();
@@ -45,28 +46,31 @@ public class CelsiusConverter implements ActionListener {
     private void addWidgets() {
         //Create widgets.
         tempCelsius = new JTextField();
-        celsiusLabel = new JLabel("Celsius");
-        fahrenheitLabel = new JLabel("Farenheit");
+        celsiusLabel = new JLabel("Celsius", SwingConstants.CENTER);
+        fahrenheitLabel = new JLabel("Fahrenheit", SwingConstants.CENTER);
         convertTemp = new JButton("Convert");
 
-        //Listen to events from the Convert button.
-        convertTemp.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                actionPerformed(e);
-                
-            }
-        });
+        //Listen to events from the Convert button (JButton) and return key (JTextField).
+        tempCelsius.addActionListener(this);
+        convertTemp.addActionListener(this);
 
         //Add the widgets to the container.
-        //...
+        converterPanel.add(tempCelsius);
+        converterPanel.add(celsiusLabel);
+        converterPanel.add(convertTemp);
+        converterPanel.add(fahrenheitLabel);
         
-        //...
+        celsiusLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        fahrenheitLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
     }
 
     public void actionPerformed(ActionEvent event) {
         //Parse degrees Celsius as a double and convert to Fahrenheit.
-        //...
+        int tempFahrenheit = (int) (Integer.parseInt(tempCelsius.getText()) * 1.8 + 32);
+        celsiusLabel.setText(Integer.parseInt(tempCelsius.getText()) + " Celsius");
+        fahrenheitLabel.setText(tempFahrenheit + " Fahrenheit");
+        tempCelsius.setText("");
+        converterFrame.pack();
     }
 
     /**
