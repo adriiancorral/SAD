@@ -42,7 +42,6 @@
  * use the Swing examples as-is from the command line, see
  * http://docs.oracle.com/javase/javatutorials/tutorial/uiswing/start/compile.html#package
  */
-package start;
 
 /*
  * HelloWorldSwing.java requires no other files. 

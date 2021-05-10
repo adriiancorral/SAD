@@ -1,5 +1,3 @@
-package src;
-
 import java.io.IOException;
 
 public class EchoServer {
@@ -7,9 +5,6 @@ public class EchoServer {
         MyServerSocket ss = new MyServerSocket(Integer.parseInt(args[0]));
         while (true) {
             MySocket cs = ss.accept();
-            if (cs == null) {
-                break;
-            }
             new Thread() {
                 public void run() {
                     try {

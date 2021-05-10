@@ -1,0 +1,202 @@
+body{
+    background-color: #202020;
+}
+
+#timer {
+    font-family: monospace;
+    font-size: 20px;
+    margin: auto;
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 0px;
+    transform: translate(-50%, 0%);
+    z-index: 1000;
+    background-color: white;
+    padding: 2px 15px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    color: white;
+}
+
+#start_screen {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+}
+
+#score {
+    font-family: monospace;
+    font-size: 20px;
+    color: white;
+    display: block;
+    margin: 40px 0px;
+}
+
+#start_button{
+    font-family: monospace;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(48, 209, 88);
+    background-color: transparent;
+    border: 2px solid rgb(48, 209, 88);
+    transition: background-color 0.25s ease, color 0.25s linear;
+}
+
+#start_button:hover{
+    background-color: rgb(48, 209, 88);
+    color: black;
+}
+
+#screen{
+    width: 600px;
+    height: 600px;
+    overflow: hidden;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background-image: url("assets/floor.png");
+    background-size: 50px;
+    border-radius: 20px;
+}
+
+#player{
+    position: absolute;
+    top: 250px;
+    left: 250px;
+    width: 100px;
+    height: 100px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    z-index: 10;
+}
+
+.meteor_shadow{
+    transform: translate(-50%, -65%);
+    position: absolute;
+    animation: meteorShadow 2s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    display: block;
+    z-index: 1;
+}
+
+.meteor_explosion {
+    transform: translate(-50%, -65%);
+    position: absolute;
+    animation: meteorExplosion 1s;
+    animation-fill-mode: forwards;
+    opacity: 1;
+    display: block;
+    z-index: 100;
+}
+
+.meteor_explosion_multicolor {
+    animation: change-color 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes meteorShadow {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes meteorExplosion {
+    0% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_00_delay-0.08s.gif");
+    }
+    8.333% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_01_delay-0.08s.gif");
+    }
+    16.667% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_02_delay-0.08s.gif");
+    }
+    25% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_03_delay-0.08s.gif");
+    }
+    41.667% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_04_delay-0.08s.gif");
+    }
+    50% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_05_delay-0.08s.gif");
+    }
+    58.333% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_06_delay-0.08s.gif");
+    }
+    66.667% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_07_delay-0.08s.gif");
+    }
+    75% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_08_delay-0.08s.gif");
+    }
+    83.333% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_09_delay-0.08s.gif");
+    }
+    91.667% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_10_delay-0.08s.gif");
+    }
+    99.999% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_11_delay-0.08s.gif");
+    }
+    100% {
+        content: url("assets/meteor_explosion_oneloop_center_frames/frame_12_delay-0.08s.gif");
+    }
+}
+
+@keyframes change-color {
+    0% {
+        filter: hue-rotate(0deg);
+    } 
+    25% {
+        filter: hue-rotate(90deg);
+    }
+    50% {
+        filter: hue-rotate(180deg);
+    }
+    75% {
+        filter: hue-rotate(270deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+
+.selectDisable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.selectEnable { 
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -o-user-select: text;
+    user-select: text;
+}

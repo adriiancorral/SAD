@@ -1,20 +1,22 @@
-package src;
-
 import java.io.IOException;
-import java.net.*;
+import java.net.ServerSocket;
+import java.net.SocketException;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MyServerSocket extends ServerSocket {
 
-    private ConcurrentHashMap<String, MySocket> clients;
+    private ConcurrentHashMap<String, MySocket> clients = new ConcurrentHashMap<>();
 
     public MyServerSocket(int port) throws IOException {
         super(port);
-        clients = new ConcurrentHashMap<String, MySocket>();
     }
 
     public MySocket accept() {
         try {
+            if (super.isClosed())
+                throw new SocketException("Socket is closed");
+            if (!super.isBound())
+                throw new SocketException("Socket is not bound yet");
             MySocket s = new MySocket();
             super.implAccept(s);
             return s;

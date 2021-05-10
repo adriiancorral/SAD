@@ -27,8 +27,7 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */ 
-package start;
+ */
 
 import java.awt.*;
 import java.awt.event.*;
@@ -36,23 +35,74 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 /* ListDemo.java requires no other files. */
-public class JListDemoGeneric extends JPanel {
+public class JListDemoGeneric extends JPanel implements ActionListener {
     
     // define a JList and a DefaultListModel
-    //...
+    private JList<String> list;
+    private DefaultListModel<String> listModel;
+    private JTextField entry;
+    private JButton addButton;
+    private JButton remButton;
 
     public JListDemoGeneric() {
         super(new BorderLayout());
 
         // create initial listModel
-        listModel = new DefaultListModel/*...*/;
-        //...
+        listModel = new DefaultListModel<>();
+        listModel.addElement("Pedro del Campillo");
+        listModel.addElement("Ana Torroja");
+        listModel.addElement("Manuel Tordesillas");
+        listModel.addElement("Antonio Mesias");
+        listModel.addElement("Jacinta Bermudez");
 
         //Create the list and put it in a scroll pane.
-        list = new JList/*...*/;
-        //...
+        list = new JList<>(listModel);
+        JScrollPane listScrollPane = new JScrollPane(list);
 
         add(listScrollPane, BorderLayout.CENTER);
+
+        //Create the box and put it in the JPanel
+        addWidgets();
+    }
+
+    /**
+     * Create and add the widgets.
+     */
+    private void addWidgets() {
+        JPanel inp = new JPanel();
+        inp.setLayout(new BoxLayout(inp, BoxLayout.LINE_AXIS));
+        //Create widgets.
+        entry = new JTextField();
+        addButton = new JButton("Add");
+        remButton = new JButton("Remove");
+
+        //Listen to events from the Convert button (JButton) and return key (JTextField).
+        entry.addActionListener(this);
+        addButton.addActionListener(this);
+        remButton.addActionListener(this);
+
+        //Add the widgets to the container.
+        inp.add(entry);
+        inp.add(addButton);
+        inp.add(remButton);
+
+        //Add JPanel to JFrame
+        add(inp, BorderLayout.PAGE_END);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        Object source = event.getSource();
+        if(source == remButton) {
+            listModel.removeElement(entry.getText());
+        }
+        if ((source == addButton || source == entry) && (!listModel.contains(entry.getText()))) {
+            listModel.addElement(entry.getText());
+        }
+        entry.setText(null);
+        if (source == listModel) {
+            entry.setText("Funciona");
+        }
     }
 
     /**
@@ -62,19 +112,25 @@ public class JListDemoGeneric extends JPanel {
      */
     private static void createAndShowGUI() {
         //Set the look and feel.
-        //...
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {}
 
         //Make sure we have nice window decorations.
-        //...
+        JFrame.setDefaultLookAndFeelDecorated(true);
         
         //Create and set up the window.
-        //...
+        JFrame frame = new JFrame("List");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
-        //...
+        frame.setContentPane(new JListDemoGeneric());
 
         //Display the window.
-        //...
+        frame.pack();
+        frame.setSize(400, frame.getHeight());
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     public static void main(String[] args) {

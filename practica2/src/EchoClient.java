@@ -1,5 +1,3 @@
-package src;
-
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,6 +15,7 @@ public class EchoClient {
         new Thread() {
             public void run() {
                 try {
+                    cs.println("prueba");
                     String line;
                     BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
                     while ((line = buff.readLine()) != null) {

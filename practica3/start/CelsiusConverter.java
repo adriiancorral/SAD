@@ -3,7 +3,6 @@
  * demonstrates the use of JButton, JTextField and
  * JLabel.  It requires no other files.
  */
-package start;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -31,7 +30,7 @@ public class CelsiusConverter implements ActionListener {
         addWidgets();
 
         //Set the default button.
-
+        converterFrame.getRootPane().setDefaultButton(convertTemp);
 
         //Add the panel to the window.
         converterFrame.getContentPane().add(converterPanel, BorderLayout.CENTER);
@@ -39,6 +38,7 @@ public class CelsiusConverter implements ActionListener {
 
         //Display the window.
         converterFrame.pack();
+        converterFrame.setLocationRelativeTo(null);
         converterFrame.setVisible(true);
     }
 
@@ -62,7 +62,7 @@ public class CelsiusConverter implements ActionListener {
         convertTemp.setForeground(new Color(220,220,220));
 
         //Listen to events from the Convert button (JButton) and return key (JTextField).
-        tempCelsius.addActionListener(this);
+        //tempCelsius.addActionListener(this);
         convertTemp.addActionListener(this);
 
         //Add the widgets to the container.

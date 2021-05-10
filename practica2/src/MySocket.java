@@ -1,10 +1,10 @@
-package src;
-
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketImpl;
 
 public class MySocket extends Socket {
 
@@ -19,8 +19,8 @@ public class MySocket extends Socket {
         buff = new BufferedReader(new InputStreamReader(this.getInputStream()));
     }
 
-    public MySocket() {
-        super();
+    public MySocket() throws SocketException {
+        super((SocketImpl) null);
     }
 
     public String getUser() {
