@@ -480,7 +480,7 @@ class Timer {
 
         this.time = 0;
 
-        // Escuchamos el evento gameover, cuando se ejecuta la partida a acabado
+        // Escuchamos el evento gameover, cuando se ejecuta la partida ha acabado
         // así que paramos el timer
         document.addEventListener("gameover", () => {
             this.stop();
