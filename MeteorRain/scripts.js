@@ -459,7 +459,6 @@ class HitDetector {
 
         // Detectamos si la explosión se ha dado, si es así le hacemos daño al player
         if(explosionLeftX < playerCenterX && explosionRightX > playerCenterX && explosionTopY < playerCenterY && explosionBottomY > playerCenterY){
-            console.log("BOOMM!!2");
 
             // Cuando le hacemos daño al player enviamos un evento damage con la cantidad de daño
             // En este caso vamos a hacer 1 de daño
@@ -480,7 +479,7 @@ class Timer {
 
         this.time = 0;
 
-        // Escuchamos el evento gameover, cuando se ejecuta la partida ha acabado
+        // Escuchamos el evento gameover, cuando se ejecuta la partida a acabado
         // así que paramos el timer
         document.addEventListener("gameover", () => {
             this.stop();
@@ -490,7 +489,6 @@ class Timer {
     start() {
         this.time = 0;
         this.timerInterval = setInterval( () => {
-            console.log("sec");
             document.getElementById("timer").innerHTML = `${this.time}`;
             this.time = this.time + 1;
 
@@ -538,13 +536,10 @@ class Score {
         // Si no hay ninguna score guardada guardamos la nueva como la mejor y si
         // hay alguna guardada comparamos la nueva con la guardada y guardamos la
         // que sea mas grande
-        console.log(newScore);
         if(typeof localStorage.bestScore != "string"){
             localStorage.bestScore = newScore;
-            console.log("hola");
         } else if (localStorage.bestScore < newScore) {
             localStorage.bestScore = newScore;
-            console.log("hola2");
         }
     }
 }
