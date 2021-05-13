@@ -30,6 +30,7 @@ public class MyServerSocket extends ServerSocket {
     }
 
     public void newUser(String name, Socket cs) {
+        cs.toString();
         for (String key : writers.keySet()) {
             writers.get(key).println("[User: " + name + "] : IS ONLINE");
             writers.get(name).println("[User: " + key + "] : IS ONLINE");
