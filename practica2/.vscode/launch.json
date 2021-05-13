@@ -14,17 +14,17 @@
             "type": "java",
             "name": "Launch EchoClient",
             "request": "launch",
-            "args": ["localhost", "50000", "adri"],
+            "args": ["localhost", "12345", "Adri"],
             "mainClass": "EchoClient",
-            "projectName": "src_b8290c24"
+            "projectName": "practica2_4b90b04f"
         },
         {
             "type": "java",
             "name": "Launch EchoServer",
             "request": "launch",
-            "args": ["50000"],
+            "args": ["12345"],
             "mainClass": "EchoServer",
-            "projectName": "src_b8290c24"
+            "projectName": "practica2_4b90b04f"
         }
     ]
 }

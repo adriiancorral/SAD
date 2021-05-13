@@ -15,7 +15,7 @@ public class EchoClient {
         new Thread() {
             public void run() {
                 try {
-                    cs.println("prueba");
+                    cs.getWriter().println(cs.getUser());
                     String line;
                     BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
                     while ((line = buff.readLine()) != null) {
