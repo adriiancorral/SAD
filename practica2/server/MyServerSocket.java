@@ -92,5 +92,15 @@ public class MyServerSocket extends ServerSocket {
         usersList.put(username, userSocket);
         return true;
     }
+
+    public void delUser(String username) {
+        usersList.remove(username);
+        try {
+            System.out.println("Client disconnected: " + username);
+            writeAllClients("Client disconnected: " + username);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
 }

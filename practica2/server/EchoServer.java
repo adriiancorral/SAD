@@ -66,6 +66,7 @@ public class EchoServer {
                                     // Tambien se lo enviamos a los demás clientes
                                     serverSocket.writeAllClientsLessOne(clientName, clientName + ": " + clientText);
                                 };
+                                serverSocket.delUser(clientName);
                             } catch(IOException ie) {
                                 ie.printStackTrace();
                             }

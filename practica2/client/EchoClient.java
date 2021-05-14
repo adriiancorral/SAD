@@ -24,6 +24,7 @@ public class EchoClient {
                             // Mandamos lo escrito en la consola
                             socket.writeOutput(consoleText);
                         };
+                        socket.sendExit();
                     } catch(IOException ie) {
                         ie.printStackTrace();
                     }   

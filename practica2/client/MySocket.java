@@ -46,4 +46,9 @@ public class MySocket extends Socket{
     public void sendName() {
         writeOutput(this.username);
     }
+
+    // Método encargado de enviarle la salida del usuario al servidor
+    public void sendExit() {
+        writeOutput(this.username);
+    }
 }
