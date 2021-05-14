@@ -1,11 +1,6 @@
 import java.io.*;
 import java.net.*;
  
-/**
- * This program demonstrates a simple TCP/IP socket server.
- *
- * @author www.codejava.net
- */
 public class EchoServer {
  
     public static void main(String[] args) {
