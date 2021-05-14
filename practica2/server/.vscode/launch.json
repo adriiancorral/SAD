@@ -12,19 +12,11 @@
         },
         {
             "type": "java",
-            "name": "Launch EchoClient",
-            "request": "launch",
-            "args": ["localhost", "12345", "Adri"],
-            "mainClass": "EchoClient",
-            "projectName": "practica2_4b90b04f"
-        },
-        {
-            "type": "java",
             "name": "Launch EchoServer",
             "request": "launch",
-            "args": ["12345"],
+            "args": "5000",
             "mainClass": "EchoServer",
-            "projectName": "practica2_4b90b04f"
+            "projectName": "server_798b173a"
         }
     ]
 }

@@ -19,27 +19,33 @@ public class Xat {
         JFrame.setDefaultLookAndFeelDecorated(true);
 
         // Create and set up the window.
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Xat");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Create an output JPanel and add a JTextArea(20, 30) inside a JScrollPane
         JPanel outPanel = new JPanel();
         outPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        outPanel.setLayout(new BoxLayout(outPanel, BoxLayout.PAGE_AXIS));
+        JTextArea messages = new JTextArea(20, 30);
+        messages.setEditable(false);
+        outPanel.add(new JScrollPane(messages));
         
         // Create an input JPanel and add a JTextField(25) and a JButton
         JPanel inPanel = new JPanel();
-        inPanel.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
+        inPanel.setLayout(new BoxLayout(inPanel, BoxLayout.LINE_AXIS));
+        JTextField text = new JTextField(25);
+        JButton btn = new JButton("Send");
+        inPanel.add(text);
+        inPanel.add(btn);
         
         // add panels to main frame
-        frame.getContentPane().add(outPanel, BorderLayout.CENTER);
-        frame.getContentPane().add(outPanel, BorderLayout.PAGE_END);
+        frame.add(outPanel, BorderLayout.CENTER);
+        frame.add(inPanel, BorderLayout.PAGE_END);
         
         //Display the window centered.
-        converterFrame.pack();
-        converterFrame.setLocationRelativeTo(null);
-        converterFrame.setVisible(true);
-        
-        //...
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     public static void main(String[] args) {
